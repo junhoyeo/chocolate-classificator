@@ -1,1 +1,2 @@
-# chocolate-classificator
+# 세넓초많
+> 세상은 넓고, 초콜릿은 많습니다.
