@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>chocolate</title>
-    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800&display=swap" rel="stylesheet"> -->
-    <style>
-      #app {
-        margin: 1rem;
-        font-family: 'Montserrat', sans-serif;
-      }
-      #title {
-        font-size: 2.5rem;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="app">
-      <h1 id="title">Is this chocolate dark or white?</h1>
-      <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="image">
-        <input type="submit">
+<head>
+  <title>chocolate</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="content">
+      <h1 class="title">무슨 초콜릿일까요?</h1>
+      <p class="desc">세상은 넓고, 초콜릿은 많습니다.</p>
+      <form class="form" method="POST" enctype="multipart/form-data">
+        <input id="filename" class="form__input" value="{{ filename }}" disabled>
+        <label class="form__upload">
+          <input type="file" class="form__file" name="image" id="file" onchange="onChangeUpload()" />
+          SELECT IMAGE
+        </label>
+        <input type="submit" class="form__submit" value="UPLOAD">
       </form>
       {% if error %}
-        <div>
-          {{ error }}
-        </div>
-      {% elif result %}
-        <div>
-          {{ result }}
-        </div>
+      <script>alert('{{ error }}');</script>
+      {% elif success %}
+      <img class="image" src="{{ url_for('static', filename=image) }}">
+      <div class="result {{ ['dark', 'white'][result] }}">
+        {{ ['다크 초콜릿', '화이트 초콜릿'][result] }}
+      </div>
       {% endif %}
     </div>
-  </body>
+  </div>
+</body>
 </html>

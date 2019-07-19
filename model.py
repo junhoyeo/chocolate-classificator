@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.transforms as transforms
 
-classes = ['dark_chocolate', 'white_chocolate']
+classes = ['dark chocolate', 'white chocolate']
 
 transform = transforms.Compose([
     transforms.RandomResizedCrop(224),
@@ -11,6 +11,7 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
 ])
+
 
 class Net(nn.Module):
     def __init__(self):
