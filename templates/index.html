@@ -11,22 +11,35 @@
     <div class="content">
       <h1 class="title">무슨 초콜릿일까요?</h1>
       <p class="desc">세상은 넓고, 초콜릿은 많습니다.</p>
-      <form class="form" method="POST" enctype="multipart/form-data">
-        <input id="filename" class="form__input" value="{{ filename }}" disabled>
-        <label class="form__upload">
-          <input type="file" class="form__file" name="image" id="file" onchange="onChangeUpload()" />
-          SELECT IMAGE
-        </label>
-        <input type="submit" class="form__submit" value="UPLOAD">
-      </form>
-      {% if error %}
-      <script>alert('{{ error }}');</script>
-      {% elif success %}
-      <img class="image" src="{{ url_for('static', filename=image) }}">
-      <div class="result {{ ['dark', 'white'][result] }}">
-        {{ ['다크 초콜릿', '화이트 초콜릿'][result] }}
+      <div class="stack">
+        <form class="form" method="POST" enctype="multipart/form-data">
+          <input
+            id="filename"
+            class="form__input"
+            value="{{ filename if filename else '파일을 선택해 주세요.' }}"
+            disabled
+          >
+          <label class="form__upload">
+            <input
+              type="file" 
+              class="form__file"
+              name="image"
+              id="file"
+              onchange="onChangeUpload()"
+            />
+            SELECT IMAGE
+          </label>
+          <input type="submit" class="form__submit" value="UPLOAD">
+        </form>
+        {% if error %}
+        <script>alert('{{ error }}');</script>
+        {% elif success %}
+        <img class="image" src="{{ 'data:image/png;base64,' + image }}">
+        <div class="result {{ ['dark', 'white'][result] }}">
+          {{ ['다크 초콜릿', '화이트 초콜릿'][result] }}
+        </div>
+        {% endif %}
       </div>
-      {% endif %}
     </div>
   </div>
 </body>
