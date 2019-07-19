@@ -3,6 +3,7 @@ from PIL import Image
 from io import BytesIO
 import torch
 from model import Net, transform
+from preprocess import alpha_to_color
 import base64
 import time
 
@@ -26,6 +27,7 @@ def home():
         image_bytes = BytesIO(image.read())
         try:
             image = Image.open(image_bytes)
+            image = alpha_to_color(image)
             input = transform(image)
             input = input.view(1, 3, 224, 224)
             output = model(input)

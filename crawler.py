@@ -7,7 +7,8 @@ def download(keyword):
     response.download({
         'keywords': keyword,
         'limit': 10000,
-        'chromedriver': './chromedriver'
+        'chromedriver': './chromedriver',
+        'output_directory': './downloads/{}'.format(keyword)
     })
 
 
