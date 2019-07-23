@@ -3,7 +3,10 @@ from PIL import Image
 from io import BytesIO
 import torch
 from model import Net, transform
+<<<<<<< HEAD
 from preprocess import alpha_to_color
+=======
+>>>>>>> 073ccc4a9b384b78d899bc17ec301c8cf47756f5
 import base64
 import time
 
