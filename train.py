@@ -25,23 +25,19 @@ np.random.shuffle(indices_train)
 split_tv = int(np.floor(valid_size * num_train))
 train_new_idx, valid_idx = indices_train[split_tv:], indices_train[:split_tv]
 
-train_sampler = SubsetRandomSampler(train_new_idx)
-test_sampler = SubsetRandomSampler(test_idx)
-valid_sampler = SubsetRandomSampler(valid_idx)
-
 train_loader = torch.utils.data.DataLoader(
     data,
     batch_size=batch_size,
-    sampler=train_sampler,
+    sampler=SubsetRandomSampler(train_new_idx),
     num_workers=1)
 valid_loader = torch.utils.data.DataLoader(
     data,
     batch_size=batch_size,
-    sampler=valid_sampler,
+    sampler=SubsetRandomSampler(valid_idx),
     num_workers=1)
 test_loader = torch.utils.data.DataLoader(
     data,
-    sampler=test_sampler,
+    sampler=SubsetRandomSampler(test_idx),
     batch_size=batch_size,
     num_workers=1)
 
